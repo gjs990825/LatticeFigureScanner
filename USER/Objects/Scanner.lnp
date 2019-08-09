@@ -4,15 +4,10 @@
 ".\objects\pid.o"
 ".\objects\gui.o"
 ".\objects\led.o"
-".\objects\motor.o"
-".\objects\mpu6050.o"
 ".\objects\iic.o"
 ".\objects\key.o"
 ".\objects\oled.o"
 ".\objects\ads1115.o"
-".\objects\fdc2214.o"
-".\objects\servo.o"
-".\objects\rgbled.o"
 ".\objects\spi.o"
 ".\objects\delay.o"
 ".\objects\stm32f10x_it.o"
@@ -45,7 +40,7 @@
 ".\objects\stm32f10x_tim.o"
 ".\objects\stm32f10x_usart.o"
 ".\objects\stm32f10x_wwdg.o"
---strict --scatter ".\Objects\OLED_SPI_Test.sct"
+--strict --scatter ".\Objects\Scanner.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
---list ".\Listings\OLED_SPI_Test.map" -o .\Objects\OLED_SPI_Test.axf
+--list ".\Listings\Scanner.map" -o .\Objects\Scanner.axf

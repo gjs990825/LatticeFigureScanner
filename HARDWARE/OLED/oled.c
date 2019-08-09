@@ -198,9 +198,19 @@ void OLED_ShowSingleChar(uint8_t x, uint8_t y, uint8_t ch, fontInfo_t font, uint
 	for (uint8_t i = 0; i < yByteSize; i++)
 	{
 		OLED_SetPos(x, y + i);
-		for (uint8_t j = 0; j < font.xSize; j++)
+		if (isHightlight)
 		{
-			OLED_WriteDat(font.data[(ch * font.xSize + j) * yByteSize + i]);
+			for (uint8_t j = 0; j < font.xSize; j++)
+			{
+				OLED_WriteDat(~font.data[(ch * font.xSize + j) * yByteSize + i]);
+			}
+		}
+		else
+		{
+			for (uint8_t j = 0; j < font.xSize; j++)
+			{
+				OLED_WriteDat(font.data[(ch * font.xSize + j) * yByteSize + i]);
+			}
 		}
 	}
 }

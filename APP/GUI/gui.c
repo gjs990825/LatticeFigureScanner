@@ -7,133 +7,76 @@
 
 // 文字储存buffer
 uint8_t angleString[10] = "";
-uint8_t targetString[10] = "";
-uint8_t target2String[10] = "";
-uint8_t timeString[10] = "";
-uint8_t stabilizedString[10] = "";
 
-// Agnle文字
-GUI_Component_t Text_Angle = {
+uint8_t basicNumText[10] = "";
+uint8_t promotedVal[10] = "";
+
+// 基础任务文字
+GUI_Component_t Text_Basic = {
     .x = 0,
     .y = 0,
     .currentHighlight = false,
     .needBlink = false,
-    .text = "Angle:",
+    .text = "Basic:",
     .font = &Font_8x16,
     .lastTimeRefresh = 0,
     .refreshInterval = 1000,
     .lastTimeFlash = 0,
 };
-// Angle数值
-GUI_Component_t AngleValue = {
+// 基础任务数值
+GUI_Component_t Text_BasicNumber = {
     .x = 48,
     .y = 0,
     .currentHighlight = false,
     .needBlink = false,
-    .text = angleString,
+    .text = basicNumText,
     .font = &Font_8x16,
     .lastTimeRefresh = 0,
-    .refreshInterval = 90,
-    .lastTimeFlash = 0,
-};
-// Target文字
-GUI_Component_t Text_Target = {
-    .x = 0,
-    .y = 2,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = "Goal:",
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 1000,
-    .lastTimeFlash = 0,
-};
-// Target数值
-GUI_Component_t TargetValue = {
-    .x = 40,
-    .y = 2,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = targetString,
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 90,
-    .lastTimeFlash = 0,
-};
-// Target2数值
-GUI_Component_t Target2Value = {
-    .x = 88,
-    .y = 2,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = target2String,
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 90,
-    .lastTimeFlash = 0,
-};
-// Stabilized文字
-GUI_Component_t StabilizedText = {
-    .x = 0,
-    .y = 4,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = "Stabilized:",
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 1000,
-    .lastTimeFlash = 0,
-};
-// Stabilized数值
-GUI_Component_t StabilizedValue = {
-    .x = 88,
-    .y = 4,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = stabilizedString,
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 90,
-    .lastTimeFlash = 0,
-};
-// Time文字
-GUI_Component_t TimeText = {
-    .x = 0,
-    .y = 6,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = "Time:",
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 1000,
-    .lastTimeFlash = 0,
-};
-// Time数值
-GUI_Component_t TimeValue = {
-    .x = 40,
-    .y = 6,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = timeString,
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 50,
+    .refreshInterval = 100,
     .lastTimeFlash = 0,
 };
 
-// 控件集合
+// 提高任务文字
+GUI_Component_t Text_Promoted = {
+    .x = 0,
+    .y = 2,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "Promoted:",
+    .font = &Font_8x16,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 1000,
+    .lastTimeFlash = 0,
+};
+// 提高任务
+GUI_Component_t Text_PromotedVal = {
+    .x = 72,
+    .y = 2,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = promotedVal,
+    .font = &Font_8x16,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 100,
+    .lastTimeFlash = 0,
+};
+
+// 可编辑控件集合
+GUI_Component_t *editableComponentsSet[] = {
+    &Text_Basic,
+    &Text_BasicNumber,
+    &Text_Promoted,
+    &Text_PromotedVal,
+};
+uint16_t editableComponentsNumber = GET_ARRAY_LENGEH(editableComponentsSet);
+
+// 默认控件集合
 GUI_Component_t *componentsSet[] = {
-    &Text_Angle,
-    &AngleValue,
-    &Text_Target,
-    &TargetValue,
-    &Target2Value,
-    &StabilizedText,
-    &StabilizedValue,
-    &TimeText,
-    &TimeValue,
+    &Text_Basic,
+    &Text_BasicNumber,
+    &Text_Promoted,
+    &Text_PromotedVal,
 };
-
 // 控件集合内容个数
 uint16_t componentsNumber = GET_ARRAY_LENGEH(componentsSet);
 
@@ -176,11 +119,13 @@ void GUI_SetFlash(GUI_Component_t *component, bool status)
 // 更新可变数据
 void GUI_UpdateData(void)
 {
-    sprintf((char *)AngleValue.text, "%5.2f", 0.0);
-    sprintf((char *)TimeValue.text, "%5.2f", millis() / 1000.0);
-    sprintf((char *)TargetValue.text, "%5.1f", 0.0);
-    sprintf((char *)Target2Value.text, "%5.1f", 0.0);
-    sprintf((char *)StabilizedValue.text, "%s", 1 ? "YES" : "NO ");
+    // sprintf((char *)Text_BasicNumber.text, "%5.2f", millis() / 1000.0);
+    // sprintf((char *)Text_PromotedVal.text, "%5.2f", millis() / 1000.0);
+    // sprintf((char *)AngleValue.text, "%5.2f", 0.0);
+    // sprintf((char *)TimeValue.text, "%5.2f", millis() / 1000.0);
+    // sprintf((char *)TargetValue.text, "%5.1f", 0.0);
+    // sprintf((char *)Target2Value.text, "%5.1f", 0.0);
+    // sprintf((char *)StabilizedValue.text, "%s", 1 ? "YES" : "NO ");
 }
 
 // 闪烁控件
@@ -237,7 +182,7 @@ uint8_t GUI_ConfirmPage(void)
 
     needRefreash = false;
     //    在刷新程序里面定义接口
-    //    GUI_ChangeDisplay(confirmComponents, confirmComponentsNumber);
+    GUI_ChangeDisplay(confirmComponents, confirmComponentsNumber);
     OLED_CLS();
 
     while (1)
@@ -251,9 +196,56 @@ uint8_t GUI_ConfirmPage(void)
         }
     }
 
-    //    GUI_ChangeDisplay(componentsSet, componentsNumber);
+    GUI_ChangeDisplay(componentsSet, componentsNumber);
     OLED_CLS();
     needRefreash = true;
 
     return key;
+}
+
+void TIM3_TimerInit(uint16_t arr, uint16_t psc)
+{
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+    NVIC_InitTypeDef NVIC_InitStructure;
+
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
+
+    TIM_TimeBaseStructure.TIM_Period = arr - 1;
+    TIM_TimeBaseStructure.TIM_Prescaler = psc - 1;
+    TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+
+    TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+
+    TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
+    NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+    TIM_Cmd(TIM3, ENABLE);
+}
+
+GUI_Component_t **componentsSeTPointer = NULL;
+uint16_t componentsNumberRec = 0;
+
+// 显示任务控制
+void GUI_ChangeDisplay(GUI_Component_t *comp[], uint16_t compNum)
+{
+    OLED_CLS();
+
+    componentsSeTPointer = comp;
+    componentsNumberRec = compNum;
+}
+
+void TIM3_IRQHandler(void)
+{
+    if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
+    {
+        TIM_ClearITPendingBit(TIM3, TIM_IT_Update); //清除标志位
+
+        GUI_RefreashInterface(componentsSet, componentsNumber);
+    }
 }

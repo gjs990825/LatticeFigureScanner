@@ -14,12 +14,6 @@ void KEY_Init(void) //IO≥ı ºªØ
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
-#define KEY1_PRES 1
-#define KEY2_PRES 2
-#define KEY3_PRES 3
-#define KEY4_PRES 4
-#define KEY5_PRES 5
-
 #define IfKey(n)     \
 	if (KEY##n == 0) \
 		return KEY##n##_PRES;
