@@ -27,6 +27,9 @@ void OLED_CLS(void);
 void OLED_ON(void);
 void OLED_OFF(void);
 
+void OLED_SetPos(unsigned char x, unsigned char y); //设置起始点坐标;
+void OLED_WriteDat(uint8_t dat);
+
 void OLED_ShowChar(uint8_t x, uint8_t y, uint8_t ch, fontInfo_t font, bool isHightlight);
 void OLED_ShowStr(uint8_t x, uint8_t y, uint8_t ch[], fontInfo_t font, bool isHighlight);
 void OLED_DrawBMP(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t BMP[]);

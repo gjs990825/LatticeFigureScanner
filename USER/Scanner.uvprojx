@@ -338,7 +338,7 @@
               <MiscControls>--no_multibyte_chars</MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CMSIS\CORE;..\CMSIS\STM32F10x_StdPeriph_Driver\inc;..\SYSTEM\sys;..\SYSTEM\delay;..\SYSTEM\usart;..\HARDWARE\LED;..\HARDWARE\MOTOR;..\APP\my_lib;..\HARDWARE\MPU6050;..\HARDWARE\IIC;..\APP\PID;..\HARDWARE\KEY;..\HARDWARE\OLED;..\APP\GUI;..\HARDWARE\ADS1115;..\HARDWARE\FDC2214;..\SYSTEM\TIMERSTAMP;..\HARDWARE\SERVO;..\HARDWARE\RGBLED;..\HARDWARE\SPI</IncludePath>
+              <IncludePath>..\USER;..\CMSIS\CORE;..\CMSIS\STM32F10x_StdPeriph_Driver\inc;..\SYSTEM\sys;..\SYSTEM\delay;..\SYSTEM\usart;..\HARDWARE\LED;..\HARDWARE\MOTOR;..\APP\my_lib;..\HARDWARE\MPU6050;..\HARDWARE\IIC;..\APP\PID;..\HARDWARE\KEY;..\HARDWARE\OLED;..\APP\GUI;..\HARDWARE\ADS1115;..\HARDWARE\FDC2214;..\SYSTEM\TIMERSTAMP;..\HARDWARE\SERVO;..\HARDWARE\RGBLED;..\HARDWARE\SPI;..\HARDWARE\STEPPER;..\HARDWARE\LightSensor;..\APP\Interface</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -407,6 +407,11 @@
               <FileType>1</FileType>
               <FilePath>..\APP\GUI\gui.c</FilePath>
             </File>
+            <File>
+              <FileName>interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\Interface\interface.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -441,6 +446,16 @@
               <FileName>spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\SPI\spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stepper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\STEPPER\stepper.c</FilePath>
+            </File>
+            <File>
+              <FileName>lightsensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\LightSensor\lightsensor.c</FilePath>
             </File>
           </Files>
         </Group>

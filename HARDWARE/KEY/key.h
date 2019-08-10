@@ -22,6 +22,8 @@
 
 void KEY_Init(void);
 uint8_t KEY_Scan(uint8_t);
-void Key_GetSetValue(float *val);
+void Key_GetSetValue(uint8_t *val);
+
+uint8_t Get_Option(void);
 
 #endif

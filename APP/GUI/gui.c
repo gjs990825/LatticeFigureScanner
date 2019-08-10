@@ -5,11 +5,73 @@
 #include "my_lib.h"
 #include "key.h"
 
+GUI_Component_t Text_Main_1 = {
+    .x = 0,
+    .y = 0,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "1.Basic",
+    .font = &Font_8x16,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_2 = {
+    .x = 0,
+    .y = 2,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "2.Scan",
+    .font = &Font_8x16,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_3 = {
+    .x = 0,
+    .y = 4,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "3.Replay",
+    .font = &Font_8x16,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_4 = {
+    .x = 0,
+    .y = 6,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "4.LED_Replay",
+    .font = &Font_8x16,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+
+GUI_Component_t *mainPage[] = {
+    &Text_Main_1,
+    &Text_Main_2,
+    &Text_Main_3,
+    &Text_Main_4,
+};
+uint16_t mainPageNumber = GET_ARRAY_LENGEH(mainPage);
+
 // 文字储存buffer
 uint8_t angleString[10] = "";
 
-uint8_t basicNumText[10] = "";
+uint8_t basicNumText1[10] = "";
+uint8_t basicNumText2[10] = "";
 uint8_t promotedVal[10] = "";
+
+uint16_t basic1 = 0;
+uint16_t basic2 = 15;
+uint16_t promoted = 1;
 
 // 基础任务文字
 GUI_Component_t Text_Basic = {
@@ -22,63 +84,52 @@ GUI_Component_t Text_Basic = {
     .lastTimeRefresh = 0,
     .refreshInterval = 1000,
     .lastTimeFlash = 0,
+    .relatedVar = NULL,
 };
-// 基础任务数值
-GUI_Component_t Text_BasicNumber = {
+// 基础任务数值1
+GUI_Component_t Text_BasicNumber1 = {
     .x = 48,
     .y = 0,
     .currentHighlight = false,
     .needBlink = false,
-    .text = basicNumText,
+    .text = basicNumText1,
     .font = &Font_8x16,
     .lastTimeRefresh = 0,
     .refreshInterval = 100,
     .lastTimeFlash = 0,
+    .relatedVar = &basic1,
+};
+// 基础任务数值1
+GUI_Component_t Text_BasicNumber2 = {
+    .x = 80,
+    .y = 0,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = basicNumText2,
+    .font = &Font_8x16,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 100,
+    .lastTimeFlash = 0,
+    .relatedVar = &basic2,
 };
 
-// 提高任务文字
-GUI_Component_t Text_Promoted = {
-    .x = 0,
-    .y = 2,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = "Promoted:",
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 1000,
-    .lastTimeFlash = 0,
+GUI_Component_t *basicPageSet[] = {
+    &Text_BasicNumber1,
+    &Text_BasicNumber2,
+    &Text_Basic,
 };
-// 提高任务
-GUI_Component_t Text_PromotedVal = {
-    .x = 72,
-    .y = 2,
-    .currentHighlight = false,
-    .needBlink = false,
-    .text = promotedVal,
-    .font = &Font_8x16,
-    .lastTimeRefresh = 0,
-    .refreshInterval = 100,
-    .lastTimeFlash = 0,
-};
+uint16_t basicPageNumber = GET_ARRAY_LENGEH(basicPageSet);
 
 // 可编辑控件集合
-GUI_Component_t *editableComponentsSet[] = {
-    &Text_Basic,
-    &Text_BasicNumber,
-    &Text_Promoted,
-    &Text_PromotedVal,
+GUI_Component_t *basicPageEditableSet[] = {
+    &Text_BasicNumber1,
+    &Text_BasicNumber2,
 };
-uint16_t editableComponentsNumber = GET_ARRAY_LENGEH(editableComponentsSet);
+uint16_t basicPageEditableNumber = GET_ARRAY_LENGEH(basicPageEditableSet);
 
-// 默认控件集合
-GUI_Component_t *componentsSet[] = {
-    &Text_Basic,
-    &Text_BasicNumber,
-    &Text_Promoted,
-    &Text_PromotedVal,
-};
-// 控件集合内容个数
-uint16_t componentsNumber = GET_ARRAY_LENGEH(componentsSet);
+// 默认控件
+GUI_Component_t **defaultComponentSet = mainPage;
+uint16_t defaultComponentNumber = GET_ARRAY_LENGEH(mainPage);
 
 // 确认控件
 GUI_Component_t ConfirmText = {
@@ -117,15 +168,15 @@ void GUI_SetFlash(GUI_Component_t *component, bool status)
 }
 
 // 更新可变数据
-void GUI_UpdateData(void)
+void GUI_UpdateData(GUI_Component_t *editable[], uint16_t editableNumber)
 {
-    // sprintf((char *)Text_BasicNumber.text, "%5.2f", millis() / 1000.0);
-    // sprintf((char *)Text_PromotedVal.text, "%5.2f", millis() / 1000.0);
-    // sprintf((char *)AngleValue.text, "%5.2f", 0.0);
-    // sprintf((char *)TimeValue.text, "%5.2f", millis() / 1000.0);
-    // sprintf((char *)TargetValue.text, "%5.1f", 0.0);
-    // sprintf((char *)Target2Value.text, "%5.1f", 0.0);
-    // sprintf((char *)StabilizedValue.text, "%s", 1 ? "YES" : "NO ");
+    for (uint16_t i = 0; i < editableNumber; i++)
+    {
+        if (editable[i]->relatedVar == NULL)
+            return;
+
+        sprintf((char *)editable[i]->text, "%3d", *editable[i]->relatedVar);
+    }
 }
 
 // 闪烁控件
@@ -156,15 +207,28 @@ void GUI_RefreashComponent(GUI_Component_t *components)
 }
 
 // 界面刷新任务
-void GUI_RefreashInterface(GUI_Component_t *components[], uint16_t compomentNumber)
+void GUI_RefreashInterface(GUI_Component_t *components[], uint16_t compomentNumber,
+                           GUI_Component_t *editable[], uint16_t editableNumber)
 {
+    // 强制一段时间后刷新屏幕所有内容
+    static uint32_t LastProcessStamp = 0;
+    static bool forceRefreash = false;
+    if (IsTimeOut(LastProcessStamp, 7000))
+    {
+        LastProcessStamp = millis();
+        {
+            OLED_CLS();
+            forceRefreash = true;
+        }
+    }
+
     if (needRefreash)
-        GUI_UpdateData();
+        GUI_UpdateData(editable, editableNumber);
 
     for (uint16_t i = 0; i < compomentNumber; i++)
     {
         // 刷新任务
-        if (IsTimeOut(components[i]->lastTimeRefresh, components[i]->refreshInterval))
+        if (IsTimeOut(components[i]->lastTimeRefresh, components[i]->refreshInterval) || forceRefreash)
         {
             GUI_RefreashComponent(components[i]);
         }
@@ -174,6 +238,7 @@ void GUI_RefreashInterface(GUI_Component_t *components[], uint16_t compomentNumb
             GUI_FlashComponent(components[i]);
         }
     }
+    forceRefreash = false;
 }
 
 uint8_t GUI_ConfirmPage(void)
@@ -182,7 +247,7 @@ uint8_t GUI_ConfirmPage(void)
 
     needRefreash = false;
     //    在刷新程序里面定义接口
-    GUI_ChangeDisplay(confirmComponents, confirmComponentsNumber);
+    GUI_ChangeDisplay(confirmComponents, confirmComponentsNumber, NULL, 0);
     OLED_CLS();
 
     while (1)
@@ -196,11 +261,28 @@ uint8_t GUI_ConfirmPage(void)
         }
     }
 
-    GUI_ChangeDisplay(componentsSet, componentsNumber);
+    GUI_ChangeDisplay(defaultComponentSet, defaultComponentNumber, NULL, 0);
     OLED_CLS();
     needRefreash = true;
 
     return key;
+}
+
+GUI_Component_t **componentsSetPointer = NULL;
+uint16_t componentsNumberRec = 0;
+GUI_Component_t **editableSetPointer = NULL;
+uint16_t editableNumberRec = 0;
+
+// 显示任务控制
+void GUI_ChangeDisplay(GUI_Component_t *components[], uint16_t compomentNumber,
+                       GUI_Component_t *editable[], uint16_t editableNumber)
+{
+    OLED_CLS();
+
+    componentsSetPointer = components;
+    componentsNumberRec = compomentNumber;
+    editableSetPointer = editable;
+    editableNumberRec = editableNumber;
 }
 
 void TIM3_TimerInit(uint16_t arr, uint16_t psc)
@@ -225,19 +307,7 @@ void TIM3_TimerInit(uint16_t arr, uint16_t psc)
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 
-    TIM_Cmd(TIM3, ENABLE);
-}
-
-GUI_Component_t **componentsSeTPointer = NULL;
-uint16_t componentsNumberRec = 0;
-
-// 显示任务控制
-void GUI_ChangeDisplay(GUI_Component_t *comp[], uint16_t compNum)
-{
-    OLED_CLS();
-
-    componentsSeTPointer = comp;
-    componentsNumberRec = compNum;
+    TIM_Cmd(TIM3, DISABLE);
 }
 
 void TIM3_IRQHandler(void)
@@ -246,6 +316,13 @@ void TIM3_IRQHandler(void)
     {
         TIM_ClearITPendingBit(TIM3, TIM_IT_Update); //清除标志位
 
-        GUI_RefreashInterface(componentsSet, componentsNumber);
+        GUI_RefreashInterface(componentsSetPointer, componentsNumberRec,
+                              editableSetPointer,
+                              editableNumberRec);
     }
+}
+
+void GUI_Control(FunctionalState status)
+{
+    TIM_Cmd(TIM3, status);
 }

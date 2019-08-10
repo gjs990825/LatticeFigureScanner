@@ -1,7 +1,9 @@
-#include "stm32f10x.h"
+#include "sys.h"
 #include "key.h"
 #include "sys.h"
 #include "delay.h"
+#include "stdio.h"
+#include "gui.h"
 
 void KEY_Init(void) //IO初始化
 {
@@ -50,11 +52,13 @@ uint8_t KEY_Scan(uint8_t mode)
 }
 
 // 获取数值并取整
-void Key_GetSetValue(float *val)
+void Key_GetSetValue(uint8_t *val)
 {
+	if (val == NULL)
+		return;
+
 	uint8_t key;
 	int8_t quitOption = 0;
-	float initVal = *val;
 
 	while (1)
 	{
@@ -63,10 +67,10 @@ void Key_GetSetValue(float *val)
 		switch (key)
 		{
 		case 2:
-			*val -= 0.1;
+			*val -= 1;
 			break;
 		case 3:
-			*val += 0.1;
+			*val += 1;
 			break;
 		case 1:
 			quitOption = -1;
@@ -84,13 +88,55 @@ void Key_GetSetValue(float *val)
 
 		if (quitOption)
 			break;
+
+		delay_ms(200);
 	}
 
 	while (key == KEY_Scan(1))
 		;
+}
 
-	if (quitOption != 1)
-		*val = (int)(initVal + 0.5);
-	else
-		*val = (int)(*val + 0.5);
+uint8_t Get_Option(void)
+{
+	uint8_t key;
+	int8_t currentCursor = 0;
+	int8_t lastCursor = 0;
+
+	GUI_SetFlash(editableSetPointer[0], true);
+	while (1)
+	{
+		key = KEY_Scan(1);
+
+		switch (key)
+		{
+		case KEY_UP:
+			currentCursor--;
+			break;
+		case KEY_DOWN:
+			currentCursor++;
+			break;
+		case KEY_OK:
+			// 完成，取消闪烁
+			GUI_SetFlash(editableSetPointer[currentCursor], false);
+			return currentCursor;
+
+		default:
+			break;
+		}
+
+		if (currentCursor >= editableNumberRec)
+			currentCursor = 0;
+		else if (currentCursor < 0)
+			currentCursor = editableNumberRec - 1;
+
+		if (lastCursor != currentCursor)
+		{
+			GUI_SetFlash(editableSetPointer[lastCursor], false);
+			GUI_SetFlash(editableSetPointer[currentCursor], true);
+
+			lastCursor = currentCursor;
+		}
+
+		delay_ms(200);
+	}
 }
