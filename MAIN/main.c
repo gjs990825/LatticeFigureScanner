@@ -59,10 +59,10 @@ int main(void)
                 Scan();
                 break;
             case 2:
-                Repay();
+                Replay();
                 break;
             case 3:
-                LED_Repay();
+                LED_Replay();
                 break;
 
             default:

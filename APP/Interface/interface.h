@@ -11,8 +11,8 @@ void Basic(void);
 
 void Scan_Once(bool pixel[][16]);
 void Scan(void);
-void Repay(void);
-void LED_Repay(void);
+void Replay(void);
+void LED_Replay(void);
 
 void OLED_DrawImg16x16(uint16_t x, uint16_t y, uint16_t img[16]);
 

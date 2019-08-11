@@ -238,7 +238,7 @@ void OLED_DrawImg16x16(uint16_t x, uint16_t y, uint16_t img[16])
     }
 }
 
-void Repay(void)
+void Replay(void)
 {
     GUI_Control(DISABLE);
     OLED_CLS();
@@ -258,7 +258,7 @@ void Repay(void)
     GUI_Control(ENABLE);
 }
 
-void LED_Repay(void)
+void LED_Replay(void)
 {
     GUI_Control(DISABLE);
     OLED_CLS();
