@@ -65,7 +65,7 @@ int _sys_write(FILEHANDLE fh, const unsigned char * buf,
         UART_write(buf[i]);
     
         // Fix for HyperTerminal    
-        if(buf[i]=='\n') UART_write('\r');
+        // if(buf[i]=='\n') UART_write('\r');
     }
     
     return 0;   

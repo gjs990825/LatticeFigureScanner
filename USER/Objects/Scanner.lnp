@@ -1,7 +1,6 @@
 --cpu Cortex-M3
 ".\objects\main.o"
 ".\objects\my_lib.o"
-".\objects\pid.o"
 ".\objects\gui.o"
 ".\objects\interface.o"
 ".\objects\led.o"

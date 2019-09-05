@@ -46,10 +46,10 @@ int main(void)
         {
             while (key == KEY_Scan(1))
                 ;
-            printf("KEY%d\r\n", key);
+            // printf("KEY%d\r\n", key);
 
             uint8_t opt = Key_Handle(key);
-            printf("opt%d\r\n", opt);
+            // printf("opt%d\r\n", opt);
             switch (opt)
             {
             case 0:

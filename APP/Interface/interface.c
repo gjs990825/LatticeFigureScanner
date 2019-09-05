@@ -62,7 +62,7 @@ void Basic(void)
         {
             while (key == KEY_Scan(1))
                 ;
-            printf("KEY%d\r\n", key);
+            // printf("KEY%d\r\n", key);
             backKey = Key_Handle(key);
             if (backKey)
                 break;
@@ -71,9 +71,6 @@ void Basic(void)
 
     if (backKey == KEY_OK)
     {
-        printf("CONTROL_Basic:[5][%d][%d]\r\n", *basicPageEditableSet[0]->relatedVar,
-               *basicPageEditableSet[1]->relatedVar);
-        delay(100);
         printf("CONTROL_Basic:[5][%d][%d]\r\n", *basicPageEditableSet[0]->relatedVar,
                *basicPageEditableSet[1]->relatedVar);
     }
@@ -265,21 +262,16 @@ void LED_Replay(void)
 
     OLED_ShowStr(0, 2, "Sending...", Font_12x24, false);
 
-    for (uint8_t i = 0; i < 3; i++)
+    for (uint8_t i = 0; i < 16; i++)
     {
-        for (uint8_t i = 0; i < 16; i++)
-        {
-            printf("IMG_DATA_1:[%d](%X)\r\n", i, img1[i]);
-            delay(50);
-            printf("IMG_DATA_2:[%d](%X)\r\n", i, img2[i]);
-            delay(50);
-            printf("IMG_DATA_3:[%d](%X)\r\n", i, img3[i]);
-            delay(50);
-        }
+        printf("IMG_DATA_1:[%d](%X)\r\n", i, img1[i]);
+        delay(50);
+        printf("IMG_DATA_2:[%d](%X)\r\n", i, img2[i]);
+        delay(50);
+        printf("IMG_DATA_3:[%d](%X)\r\n", i, img3[i]);
+        delay(50);
     }
 
-    printf("IMG_DATA_OK\r\n");
-    delay_ms(50);
     printf("IMG_DATA_OK\r\n");
 
     OLED_CLS();

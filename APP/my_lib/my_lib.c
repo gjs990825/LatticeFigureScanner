@@ -110,12 +110,10 @@ double Variance(double *x, uint16_t number)
 		p += x[i];
 	}
 	p = p / number;
-	// printf("%f\n", p);
 	for (int j = 0; j < number; j++)
 	{
 		g = x[j] - p;
 		f += g * g;
-		// printf("%f\n", f);
 	}
 	f = f / number;
 	f = sqrt(f);
