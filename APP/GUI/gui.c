@@ -5,49 +5,109 @@
 #include "my_lib.h"
 #include "key.h"
 
-GUI_Component_t Text_Main_1 = {
+GUI_Component_t Text_Main_Basic = {
     .x = 0,
     .y = 0,
     .currentHighlight = false,
     .needBlink = false,
-    .text = "1.Basic",
-    .font = &Font_8x16,
+    .text = "1.Basic:",
+    .font = &Font_6x12,
     .lastTimeRefresh = 0,
     .refreshInterval = 500,
     .lastTimeFlash = 0,
     .relatedVar = NULL,
 };
-GUI_Component_t Text_Main_2 = {
+GUI_Component_t Text_Main_Basic_1 = {
+    .x = 48,
+    .y = 0,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "(1)",
+    .font = &Font_6x12,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_Basic_2 = {
+    .x = 66,
+    .y = 0,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "(2)",
+    .font = &Font_6x12,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_Basic_34 = {
+    .x = 84,
+    .y = 0,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "(3/4)",
+    .font = &Font_6x12,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_Scan = {
     .x = 0,
-    .y = 2,
+    .y = 3,
     .currentHighlight = false,
     .needBlink = false,
     .text = "2.Scan",
-    .font = &Font_8x16,
+    .font = &Font_6x12,
     .lastTimeRefresh = 0,
     .refreshInterval = 500,
     .lastTimeFlash = 0,
     .relatedVar = NULL,
 };
-GUI_Component_t Text_Main_3 = {
-    .x = 0,
-    .y = 4,
+GUI_Component_t Text_Main_Replay = {
+    .x = 64,
+    .y = 3,
     .currentHighlight = false,
     .needBlink = false,
     .text = "3.Replay",
-    .font = &Font_8x16,
+    .font = &Font_6x12,
     .lastTimeRefresh = 0,
     .refreshInterval = 500,
     .lastTimeFlash = 0,
     .relatedVar = NULL,
 };
-GUI_Component_t Text_Main_4 = {
+GUI_Component_t Text_Main_LEDReplay = {
     .x = 0,
     .y = 6,
     .currentHighlight = false,
     .needBlink = false,
-    .text = "4.LED_Replay",
-    .font = &Font_8x16,
+    .text = "4.LED_Replay:",
+    .font = &Font_6x12,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_LEDReplay_1 = {
+    .x = 78,
+    .y = 6,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "(1)",
+    .font = &Font_6x12,
+    .lastTimeRefresh = 0,
+    .refreshInterval = 500,
+    .lastTimeFlash = 0,
+    .relatedVar = NULL,
+};
+GUI_Component_t Text_Main_LEDReplay_23 = {
+    .x = 96,
+    .y = 6,
+    .currentHighlight = false,
+    .needBlink = false,
+    .text = "(2/3)",
+    .font = &Font_6x12,
     .lastTimeRefresh = 0,
     .refreshInterval = 500,
     .lastTimeFlash = 0,
@@ -55,12 +115,28 @@ GUI_Component_t Text_Main_4 = {
 };
 
 GUI_Component_t *mainPage[] = {
-    &Text_Main_1,
-    &Text_Main_2,
-    &Text_Main_3,
-    &Text_Main_4,
+    &Text_Main_Basic,
+    &Text_Main_Basic_1,
+    &Text_Main_Basic_2,
+    &Text_Main_Basic_34,
+    &Text_Main_Scan,
+    &Text_Main_Replay,
+    &Text_Main_LEDReplay,
+    &Text_Main_LEDReplay_1,
+    &Text_Main_LEDReplay_23,
 };
 uint16_t mainPageNumber = GET_ARRAY_LENGEH(mainPage);
+
+GUI_Component_t *mainPageEditable[] = {
+    &Text_Main_Basic_1,
+    &Text_Main_Basic_2,
+    &Text_Main_Basic_34,
+    &Text_Main_Scan,
+    &Text_Main_Replay,
+    &Text_Main_LEDReplay_1,
+    &Text_Main_LEDReplay_23,
+};
+uint16_t mainPageEditableNumber = GET_ARRAY_LENGEH(mainPageEditable);
 
 // 文字储存buffer
 uint8_t angleString[10] = "";

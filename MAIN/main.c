@@ -25,7 +25,7 @@ int main(void)
     HardwareSPI_Init();
     OLED_Init();
     GUI_ChangeDisplay(mainPage, mainPageNumber,
-                      mainPage, mainPageNumber);
+                      mainPageEditable, mainPageEditableNumber);
     TIM3_TimerInit(7200, 1000);
 
     LED_Init();

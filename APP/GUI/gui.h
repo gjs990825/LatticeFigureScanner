@@ -21,8 +21,12 @@ typedef struct GUI_Compoment
     uint16_t *relatedVar; // 关联变量
 } GUI_Component_t;
 
+// 主页
 extern GUI_Component_t *mainPage[];
 extern uint16_t mainPageNumber;
+
+extern GUI_Component_t *mainPageEditable[];
+extern uint16_t mainPageEditableNumber;
 
 extern GUI_Component_t *basicPageSet[];
 extern uint16_t basicPageNumber;
