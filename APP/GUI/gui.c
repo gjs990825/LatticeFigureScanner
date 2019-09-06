@@ -106,7 +106,7 @@ GUI_Component_t Text_Main_LEDReplay_23 = {
     .y = 6,
     .currentHighlight = false,
     .needBlink = false,
-    .text = "(2/3)",
+    .text = "(2)",
     .font = &Font_6x12,
     .lastTimeRefresh = 0,
     .refreshInterval = 500,
@@ -114,6 +114,7 @@ GUI_Component_t Text_Main_LEDReplay_23 = {
     .relatedVar = NULL,
 };
 
+// 主页元素
 GUI_Component_t *mainPage[] = {
     &Text_Main_Basic,
     &Text_Main_Basic_1,
@@ -126,7 +127,7 @@ GUI_Component_t *mainPage[] = {
     &Text_Main_LEDReplay_23,
 };
 uint16_t mainPageNumber = GET_ARRAY_LENGEH(mainPage);
-
+// 可选择控件
 GUI_Component_t *mainPageEditable[] = {
     &Text_Main_Basic_1,
     &Text_Main_Basic_2,
@@ -139,11 +140,10 @@ GUI_Component_t *mainPageEditable[] = {
 uint16_t mainPageEditableNumber = GET_ARRAY_LENGEH(mainPageEditable);
 
 // 文字储存buffer
-uint8_t angleString[10] = "";
-
-uint8_t basicNumText1[10] = "";
-uint8_t basicNumText2[10] = "";
-uint8_t promotedVal[10] = "";
+uint8_t angleString[10];
+uint8_t basicNumText1[10];
+uint8_t basicNumText2[10];
+uint8_t promotedVal[10];
 
 uint16_t basic1 = 0;
 uint16_t basic2 = 15;
@@ -206,6 +206,9 @@ uint16_t basicPageEditableNumber = GET_ARRAY_LENGEH(basicPageEditableSet);
 // 默认控件
 GUI_Component_t **defaultComponentSet = mainPage;
 uint16_t defaultComponentNumber = GET_ARRAY_LENGEH(mainPage);
+// 默认可选择控件
+GUI_Component_t **defaultEditableSet = mainPageEditable;
+uint16_t defaultEditableNumber = GET_ARRAY_LENGEH(mainPageEditable);
 
 // 确认控件
 GUI_Component_t ConfirmText = {
@@ -337,7 +340,7 @@ uint8_t GUI_ConfirmPage(void)
         }
     }
 
-    GUI_ChangeDisplay(defaultComponentSet, defaultComponentNumber, NULL, 0);
+    GUI_ChangeDisplay(defaultComponentSet, defaultComponentNumber, defaultEditableSet, defaultEditableNumber);
     OLED_CLS();
     needRefreash = true;
 

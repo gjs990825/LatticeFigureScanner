@@ -6,7 +6,8 @@
 #include "key.h"
 #include "my_lib.h"
 
-#define STEPPER_DELAY 2000
+#define STEPPER_DELAY_X 1000
+#define STEPPER_DELAY_Y 2000
 
 const uint32_t MAX_STEP = 5000;
 
@@ -46,9 +47,9 @@ void STEPPER_Step_X(bool dir, uint32_t steps)
     for (uint32_t i = 0; i < steps; i++)
     {
         stepperPin1 = 1;
-        delay_us(STEPPER_DELAY);
+        delay_us(STEPPER_DELAY_X);
         stepperPin1 = 0;
-        delay_us(STEPPER_DELAY);
+        delay_us(STEPPER_DELAY_X);
     }
 }
 
@@ -59,9 +60,9 @@ void STEPPER_Step_Y(bool dir, uint32_t steps)
     for (uint32_t i = 0; i < steps; i++)
     {
         stepperPin2 = 1;
-        delay_us(STEPPER_DELAY);
+        delay_us(STEPPER_DELAY_Y);
         stepperPin2 = 0;
-        delay_us(STEPPER_DELAY);
+        delay_us(STEPPER_DELAY_Y);
     }
 }
 

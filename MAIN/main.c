@@ -46,27 +46,24 @@ int main(void)
         {
             while (key == KEY_Scan(1))
                 ;
-            // printf("KEY%d\r\n", key);
 
             uint8_t opt = Key_Handle(key);
-            // printf("opt%d\r\n", opt);
-            switch (opt)
-            {
-            case 0:
-                Basic();
-                break;
-            case 1:
-                Scan();
-                break;
-            case 2:
-                Replay();
-                break;
-            case 3:
-                LED_Replay();
-                break;
 
-            default:
-                break;
+            if (opt < 3)
+            {
+                Basic(opt);
+            }
+            else if (opt == 3)
+            {
+                Scan();
+            }
+            else if (opt == 4)
+            {
+                Replay();
+            }
+            else if (opt < 7)
+            {
+                LED_Replay(opt);
             }
         }
     }
