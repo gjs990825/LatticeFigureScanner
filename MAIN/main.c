@@ -61,7 +61,11 @@ int main(void)
             {
                 Replay();
             }
-            else if (opt < 7)
+            else if (opt == 5)
+            {
+                LitigationWarning();
+            }
+            else if (opt < 8)
             {
                 LED_Replay(opt);
             }

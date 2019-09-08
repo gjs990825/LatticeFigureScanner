@@ -11,5 +11,6 @@ void Basic(uint8_t n);
 void Scan(void);
 void Replay(void);
 void LED_Replay(uint8_t n);
+void LitigationWarning(void);
 
 #endif // _INTERFACE_H_

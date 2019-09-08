@@ -274,7 +274,22 @@ void LED_Replay(uint8_t n)
         }
     }
 
-    printf("Replay:[%d]\r\n", n - 4);
+    printf("Replay:[%d]\r\n", n - 5);
+
+    OLED_CLS();
+    delay(100);
+    GUI_Control(ENABLE);
+}
+
+// 律师函警告！！
+void LitigationWarning(void)
+{
+    GUI_Control(DISABLE);
+    OLED_CLS();
+
+    OLED_ShowStr(0, 2, "Warning!!!", Font_12x24, false);
+    printf("CXK\r\n");
+    delay(3000);
 
     OLED_CLS();
     delay(100);
